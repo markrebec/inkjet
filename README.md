@@ -1,6 +1,6 @@
 # Inkjet
 
-Formatting, indentation, bash colors, etc. for ruby cli script output
+Formatting, indentation, bash colors, etc. for ruby cli script output.
 
 ## Installation
 
@@ -31,8 +31,8 @@ All methods are aliased to their bang (`!`) counterparts to modify your string i
 
 Colors will override each other.
 
-    "Hello World".blue.yellow                     # Text will be yellow
-    "Hello World".blue.magenta_bg.red.green_bg    # Text will be red on a green background
+    puts "Hello World".blue.yellow                     # Text will be yellow
+    puts "Hello World".blue.magenta_bg.red.green_bg    # Text will be red on a green background
 
 ### Formatting
 
