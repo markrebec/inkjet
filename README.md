@@ -12,7 +12,7 @@ Or, if you're using bundler, add this to your Gemfile:
 
 ## Usage
 
-Inkjet provides some helper methods within the 'Inkjet' namespace, but most of the formatting can be done inline on your string object and can be chained together.
+Inkjet provides some helper methods within the `Inkjet` namespace, but most of the formatting can be done inline on your string object and can be chained together.
 
 ### Colors
 
