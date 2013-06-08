@@ -10,8 +10,12 @@ module Inkjet
         @spaces -= args[0] || TABSTOP
       else
         spaces = args[1] || TABSTOP
-        "#{(@spaces + spaces.to_i).times.map {" "}.join}#{args[0].to_s}"
+        "#{padding(@spaces + spaces.to_i)}#{args[0].to_s.split("\n").join("\n#{padding(@spaces + spaces.to_i)}")}"
       end
+    end
+
+    def self.padding(spaces)
+      spaces.times.map {" "}.join
     end
 
     def self.puts(output)
