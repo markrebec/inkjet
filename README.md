@@ -47,7 +47,7 @@ There are a few methods for other types of formatting as well.
 
 ### Indentation
 
-You can indent your text 'x' number of spaces with the 'indent' method.
+You can indent your text any number of spaces with the `String#indent` method.
 
     puts "Hello World".indent       # Indents by 2 spaces
     puts "Hello World".indent(8)    # Indents by 8 spaces
