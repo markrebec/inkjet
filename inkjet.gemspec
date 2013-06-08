@@ -12,5 +12,6 @@ Gem::Specification.new do |s|
   s.test_files  = Dir["spec/**/*"]
   s.homepage    = "http://github.com/markrebec/inkjet"
 
+  s.add_dependency "activesupport"
   s.add_development_dependency "rspec"
 end
