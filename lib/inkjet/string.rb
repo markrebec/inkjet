@@ -24,6 +24,30 @@ module Inkjet
       apply_inkjet_code!(Inkjet::Underline)
     end
     
+    def blink
+      clone.blink!
+    end
+
+    def blink!
+      apply_inkjet_code!(Inkjet::Blink)
+    end
+    
+    def invert
+      clone.invert!
+    end
+
+    def invert!
+      apply_inkjet_code!(Inkjet::Invert)
+    end
+    
+    def hidden
+      clone.hidden!
+    end
+
+    def hidden!
+      apply_inkjet_code!(Inkjet::Hidden)
+    end
+    
     def inkjet_codes
       match(/\e\[([\d;]+)m/)[1].split(";")
     rescue
