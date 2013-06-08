@@ -72,9 +72,9 @@ You can also use the `Inkjet.indent` method with a block for nested indentation.
       
       Inkjet.indent do
         my_str <<EXAMPLE
-      Each of these lines
-      will be indented 4 spaces
-          but this line will be indented 8 spaces because leading whitespace is not stripped
+    Each of these lines
+    will be indented 4 spaces
+        but this line will be indented 8 spaces because leading whitespace is not stripped
     EXAMPLE
         puts my_str
       end
