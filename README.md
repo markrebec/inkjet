@@ -31,8 +31,14 @@ All methods are aliased to their bang (`!`) counterparts to modify your string i
 
 Colors will override each other.
 
-    puts "Hello World".blue.yellow                     # Text will be yellow
-    puts "Hello World".blue.magenta_bg.red.green_bg    # Text will be red on a green background
+    puts "Hello World".blue.yellow                      # Text will be yellow
+    puts "Hello World".blue.magenta_bg.red.green_bg     # Text will be red on a green background
+
+Passing `true` to any color method will force the addition of that color formatting to the entire string, including previously formatted substrings.
+
+    name = "Mark"
+    puts "Hello #{name.cyan}, how are #{"you".green}?".blue        # The `name` will by cyan, the word 'you' will be green and all surrounding text will be blue
+    puts "Hello #{name.cyan}, how are #{"you".green}?".blue(true)  # All text will be blue, including previously formatted or colored substrings like the `name` and the text 'you'
 
 ### Formatting
 
@@ -44,6 +50,12 @@ There are a few methods for other types of formatting as well.
     puts "Hello World".blink        # Makes text blink
     puts "Hello World".invert       # Invert foreground and background color
     puts "Hello World".hidden       # Hides text (same color as background)
+
+As with the color methods, passing `true` to any formatting method will force the addition of that formatting to the entire string, including previously formatted substrings.
+
+    name = "Mark"
+    puts "Hello #{name.underline}, how are #{"you".green}?".bold        # The `name` will be underlined but not bold, the text 'you' will be green but not bold, and all surrounding text will be bold
+    puts "Hello #{name.underline}, how are #{"you".green}?".bold(true)  # The `name` will be underlined, the text 'you' will be green, and the entire string (including `name` and 'you') will be bold
 
 ### Indentation
 
