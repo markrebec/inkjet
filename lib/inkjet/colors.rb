@@ -40,37 +40,37 @@ module Inkjet
         base.send :extend, self
       end
 
-      def colorize(color, str)
-        colorize!(color, str.clone)
+      def colorize(color, str, wrap=false)
+        colorize!(color, str.clone, wrap)
       end
       
-      def colorize!(color, str)
-        str.apply_inkjet_code!(Inkjet::Colors.foreground(color))
+      def colorize!(color, str, wrap=false)
+        str.apply_inkjet_code!(Inkjet::Colors.foreground(color), wrap)
       end
 
-      def colorize_background(color, str)
-        colorize_background!(color, str.clone)
+      def colorize_background(color, str, wrap=false)
+        colorize_background!(color, str.clone, wrap)
       end
       
-      def colorize_background!(color, str)
-        str.apply_inkjet_code!(Inkjet::Colors.background(color))
+      def colorize_background!(color, str, wrap=false)
+        str.apply_inkjet_code!(Inkjet::Colors.background(color), wrap)
       end
 
-      def colorize_with_background(fg_color, bg_color, str)
-        colorize_with_background!(fg_color, bg_color, str.clone)
+      def colorize_with_background(fg_color, bg_color, str, wrap=false)
+        colorize_with_background!(fg_color, bg_color, str.clone, wrap)
       end
       
-      def colorize_with_background!(fg_color, bg_color, str)
-        str.apply_inkjet_codes!(Inkjet::Colors.foreground(fg_color), Inkjet::Colors.background(bg_color))
+      def colorize_with_background!(fg_color, bg_color, str, wrap=false)
+        str.apply_inkjet_codes!([Inkjet::Colors.foreground(fg_color), Inkjet::Colors.background(bg_color)], wrap)
       end
 
       def method_missing(meth, *args)
         if meth.match(/\A(#{Inkjet::Colors::Colors.push("default").join("|")})_text(!?)\Z/)
-          colorize($1, args.map(&:to_s).join(" "))
+          colorize($1, *args)#.map(&:to_s).join(" "))
         elsif meth.match(/\A(#{Inkjet::Colors::Colors.push("default").join("|")})_(background|bg)(!?)\Z/)
-          colorize_background($1, args.map(&:to_s).join(" "))
+          colorize_background($1, *args)#.map(&:to_s).join(" "))
         elsif meth.match(/\A(#{Inkjet::Colors::Colors.push("default").join("|")})_(#{Inkjet::Colors::Colors.push("default").join("|")})(!?)\Z/)
-          colorize_with_background($1, $2, args.map(&:to_s).join(" "))
+          colorize_with_background($1, $2, *args)#.map(&:to_s).join(" "))
         else
           super
         end
@@ -80,11 +80,11 @@ module Inkjet
     module String
       def method_missing(meth, *args)
         if meth.match(/\A(#{Inkjet::Colors::Colors.join("|")})(!?)\Z/)
-          Inkjet.send("colorize#{$2}", $1, self)
+          Inkjet.send("colorize#{$2}", $1, self, *args)
         elsif meth.match(/\A(#{Inkjet::Colors::Colors.join("|")})_(background|bg)(!?)\Z/)
-          Inkjet.send("colorize_background#{$3}", $1, self)
+          Inkjet.send("colorize_background#{$3}", $1, self, *args)
         elsif meth.match(/\A(#{Inkjet::Colors::Colors.join("|")})_(#{Inkjet::Colors::Colors.join("|")})(!?)\Z/)
-          Inkjet.send("colorize_with_background#{$3}", $1, $2, self)
+          Inkjet.send("colorize_with_background#{$3}", $1, $2, self, *args)
         else
           super
         end
