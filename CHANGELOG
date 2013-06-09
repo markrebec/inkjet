@@ -1,0 +1,6 @@
+0.0.2:
+* Loads of refactoring - completely reworked how formatting and substrings are tracked and updated
+* Can now force wrapping of an entire string with a new format, including any previously formatted substrings
+
+0.0.1:
+* Initial version of inkjet with support for colors, basic formatting and indentation
