@@ -1,3 +1,8 @@
+0.0.3:
+* Introduced an Inkjet::Substring class to help manage chunks of strings
+* Moved all the stylized stuff to Inkjet::Styles
+* Added support for formatters to indentation blocks, to easily format everything within the block
+
 0.0.2:
 * Loads of refactoring - completely reworked how formatting and substrings are tracked and updated
 * Can now force wrapping of an entire string with a new format, including any previously formatted substrings
