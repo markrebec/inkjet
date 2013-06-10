@@ -21,7 +21,9 @@ module Inkjet
         @@spaces += args[0] || TABSTOP
         scoped_formatters = formatters.clone
 
-        class_eval &block
+        block.binding.eval("define_method :puts do |output| Inkjet::Indent.puts(output); end")
+        block.binding.eval("define_method :print do |output| Inkjet::Indent.print(output); end")
+        block.call
         
         @@formatters = scoped_formatters
         @@spaces -= args[0] || TABSTOP
