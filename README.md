@@ -108,6 +108,8 @@ You can also use the `Inkjet.indent` method with a block for nested indentation.
       end
     end
 
+**Note: Because inkjet currently uses a call to `class_eval` for nested indentation blocks, there are some scoping issues. For example, instance variables referenced inside the block might not behave you you would expect (they would reference instance vars belonging to the `Inkjet::Indent` module).** This should be cleaned up in future versions, when the indentation logic gets cleaned up and refactored.
+
 #### Custom Formatters
 
 If you'd like to easily format everything within an `Inkjet.indent` block, you can use the `format_with` method and pass any of the color or style formatting methods.
