@@ -95,6 +95,8 @@ You can also use the `Inkjet.indent` method with a block for nested indentation.
       Inkjet.indent(10) do
         print "This is indented 12 spaces"
       end
+
+      puts "This is indented 6 spaces".indent(4) # string helpers will indent properly within nested blocks
       
       Inkjet.indent do
         my_str <<EXAMPLE
