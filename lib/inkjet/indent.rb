@@ -16,8 +16,8 @@ module Inkjet
     end
 
     def self.add_bindings(block)
-      block.binding.eval("def puts(output); Inkjet::Indent.puts(output); end")
-      block.binding.eval("def print(output); Inkjet::Indent.print(output); end")
+      block.binding.eval("def puts(output=''); Inkjet::Indent.puts(output); end")
+      block.binding.eval("def print(output=''); Inkjet::Indent.print(output); end")
       block.binding.eval("def format_with(meth, *args); Inkjet::Indent.format_with(meth, *args); end")
       block
     end
@@ -34,7 +34,7 @@ module Inkjet
         @@spaces -= args[0] || TABSTOP
       else
         spaces = args[1] || TABSTOP
-        "#{padding(@@spaces + spaces.to_i)}#{args[0].to_s.split("\n").join("\n#{padding(@@spaces + spaces.to_i)}")}"
+        "#{padding(spaces.to_i)}#{args[0].to_s.split("\n").join("\n#{padding(spaces.to_i)}")}"
       end
     end
 
@@ -55,12 +55,12 @@ module Inkjet
       spaces.times.map {" "}.join
     end
 
-    def self.puts(output)
-      STDOUT.puts apply_formatters(indent(output, 0))
+    def self.puts(output='')
+      STDOUT.puts apply_formatters(indent(output, @@spaces))
     end
 
-    def self.print(output)
-      STDOUT.print apply_formatters(indent(output, 0))
+    def self.print(output='')
+      STDOUT.print apply_formatters(indent(output, @@spaces))
     end
 
     module String
