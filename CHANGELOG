@@ -1,3 +1,7 @@
+0.0.5:
+* Fixed a bug with the new bindings by using the def keyword instead of define_method
+* Fixed a bug with text being indented extra spaces in certain circumstances
+
 0.0.4:
 * Binding indent helper methods to provided blocks rather than executing the block within a Inkjet::Indent.class_eval (fixes issues with losing scope and prevents accidentally messing with the Inkjet::Indent module from within the block)
 
