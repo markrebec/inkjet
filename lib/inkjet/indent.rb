@@ -14,6 +14,13 @@ module Inkjet
         @args = args
       end
     end
+
+    def self.add_bindings(block)
+      block.binding.eval("define_method :puts do |output| Inkjet::Indent.puts(output); end")
+      block.binding.eval("define_method :print do |output| Inkjet::Indent.print(output); end")
+      block.binding.eval("define_method :format_with do |meth, *args| Inkjet::Indent.format_with(meth, *args); end")
+      block
+    end
     
     def self.indent(*args, &block)
       @@spaces ||= 0
@@ -21,9 +28,7 @@ module Inkjet
         @@spaces += args[0] || TABSTOP
         scoped_formatters = formatters.clone
 
-        block.binding.eval("define_method :puts do |output| Inkjet::Indent.puts(output); end")
-        block.binding.eval("define_method :print do |output| Inkjet::Indent.print(output); end")
-        block.call
+        add_bindings(block).call
         
         @@formatters = scoped_formatters
         @@spaces -= args[0] || TABSTOP
