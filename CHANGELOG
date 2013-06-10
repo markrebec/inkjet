@@ -1,3 +1,6 @@
+0.0.4:
+* Binding indent helper methods to provided blocks rather than executing the block within a Inkjet::Indent.class_eval (fixes issues with losing scope and prevents accidentally messing with the Inkjet::Indent module from within the block)
+
 0.0.3:
 * Introduced an Inkjet::Substring class to help manage chunks of strings
 * Moved all the stylized stuff to Inkjet::Styles
