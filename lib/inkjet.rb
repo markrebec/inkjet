@@ -1,17 +1,13 @@
 require 'active_support/inflector'
 require 'inkjet/string'
 require 'inkjet/colors'
+require 'inkjet/styles'
 require 'inkjet/indent'
 
 module Inkjet
   Close     = 0
-  Bold      = 1
-  Dim       = 2
-  Underline = 4
-  Blink     = 5
-  Invert    = 7
-  Hidden    = 8
   include Colors::Formatters
+  include Styles::Formatters
 
   def self.escape(code)
     "\e[#{code.to_s.chomp('m')}m"
