@@ -16,12 +16,12 @@ module Inkjet
     end
 
     def self.add_bindings(block)
-      block.binding.eval("define_method :puts do |output| Inkjet::Indent.puts(output); end")
-      block.binding.eval("define_method :print do |output| Inkjet::Indent.print(output); end")
-      block.binding.eval("define_method :format_with do |meth, *args| Inkjet::Indent.format_with(meth, *args); end")
+      block.binding.eval("def puts(output); Inkjet::Indent.puts(output); end")
+      block.binding.eval("def print(output); Inkjet::Indent.print(output); end")
+      block.binding.eval("def format_with(meth, *args); Inkjet::Indent.format_with(meth, *args); end")
       block
     end
-    
+
     def self.indent(*args, &block)
       @@spaces ||= 0
       if block_given?
@@ -56,11 +56,11 @@ module Inkjet
     end
 
     def self.puts(output)
-      STDOUT.puts apply_formatters(indent(output))#indent(output, 0)
+      STDOUT.puts apply_formatters(indent(output, 0))
     end
 
     def self.print(output)
-      STDOUT.print apply_formatters(indent(output))#indent(output, 0)
+      STDOUT.print apply_formatters(indent(output, 0))
     end
 
     module String
