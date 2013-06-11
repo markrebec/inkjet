@@ -19,6 +19,7 @@ module Inkjet
       block.binding.eval("def puts(output=''); Inkjet::Indent.puts(output); end")
       block.binding.eval("def print(output=''); Inkjet::Indent.print(output); end")
       block.binding.eval("def format_with(meth, *args); Inkjet::Indent.format_with(meth, *args); end")
+      block.binding.eval("def undent(&block); Inkjet::Indent.undent(&block); end")
       block
     end
 
@@ -35,6 +36,20 @@ module Inkjet
       else
         spaces = args[1] || TABSTOP
         "#{padding(spaces.to_i)}#{args[0].to_s.split("\n").join("\n#{padding(spaces.to_i)}")}"
+      end
+    end
+
+    def self.undent(&block)
+      @@spaces ||= 0
+      if block_given?
+        scoped_spaces = @@spaces
+        @@spaces = 0
+        scoped_formatters = formatters.clone
+
+        add_bindings(block).call
+        
+        @@formatters = scoped_formatters
+        @@spaces = scoped_spaces
       end
     end
 
