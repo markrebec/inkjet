@@ -1,3 +1,8 @@
+0.0.6:
+* Fixed args for puts/print (completely overlooked 0 args)
+* Changed how nested spaces are passed around
+* Adding `undent` method to remove indentation from a block (useful for printing to the same line)
+
 0.0.5:
 * Fixed a bug with the new bindings by using the def keyword instead of define_method
 * Fixed a bug with text being indented extra spaces in certain circumstances
