@@ -13,6 +13,9 @@ tmtags
 ## VIM
 *.swp
 
+## built gems
+*.gem
+
 ## Gemfile.lock
 Gemfile.lock
 
