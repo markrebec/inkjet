@@ -55,7 +55,7 @@ module Inkjet
     end
     
     def clean
-      clone.clean!
+      dup.clean!
     end
 
     # Apply a formatting code to the appropriate chunks in the string.
@@ -86,13 +86,13 @@ module Inkjet
     end
 
     def apply_inkjet_code(code, wrap=false)
-      clone.apply_inkjet_code!(code, wrap)
+      dup.apply_inkjet_code!(code, wrap)
     end
 
     def apply_inkjet_codes(codes, wrap=false)
-      cloned = clone
-      codes.each { |code| cloned.apply_inkjet_code!(code, wrap) }
-      cloned
+      dupd = dup
+      codes.each { |code| dupd.apply_inkjet_code!(code, wrap) }
+      dupd
     end
     
     def apply_inkjet_codes!(codes, wrap=false)
