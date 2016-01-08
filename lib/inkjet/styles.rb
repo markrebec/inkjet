@@ -18,7 +18,7 @@ module Inkjet
       end
 
       def stylize(style, str, wrap=false)
-        stylize!(style, str.clone, wrap)
+        stylize!(style, str.dup, wrap)
       end
       
       def stylize!(style, str, wrap=false)

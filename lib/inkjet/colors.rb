@@ -41,7 +41,7 @@ module Inkjet
       end
 
       def colorize(color, str, wrap=false)
-        colorize!(color, str.clone, wrap)
+        colorize!(color, str.dup, wrap)
       end
       
       def colorize!(color, str, wrap=false)
@@ -49,7 +49,7 @@ module Inkjet
       end
 
       def colorize_background(color, str, wrap=false)
-        colorize_background!(color, str.clone, wrap)
+        colorize_background!(color, str.dup, wrap)
       end
       
       def colorize_background!(color, str, wrap=false)
@@ -57,7 +57,7 @@ module Inkjet
       end
 
       def colorize_with_background(fg_color, bg_color, str, wrap=false)
-        colorize_with_background!(fg_color, bg_color, str.clone, wrap)
+        colorize_with_background!(fg_color, bg_color, str.dup, wrap)
       end
       
       def colorize_with_background!(fg_color, bg_color, str, wrap=false)
